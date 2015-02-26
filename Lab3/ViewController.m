@@ -45,19 +45,19 @@
     // Testing
     
     NSLog(@"For Testing");
-    NSLog(@"Number quotes: %d",[self.model numberOfQuotes]);
+    NSLog(@"Number quotes: %ld",[self.model numberOfQuotes]);
     NSLog(@"Inserting a quote now at index 0. The number of quotes should change" );
     [self.model insertQuote:@"The most boring thing in the entire world is nudity." author:@"George Burns" atIndex:0];
-    NSLog(@"Number quotes: %d",[self.model numberOfQuotes]);
+    NSLog(@"Number quotes: %ld",[self.model numberOfQuotes]);
     NSLog(@"Removing a quote now at index 0. The number of quotes should be less now.");
     [self.model removeQuoteAtIndex:0];
-    NSLog(@"Number quotes: %d",[self.model numberOfQuotes]);
+    NSLog(@"Number quotes: %ld",[self.model numberOfQuotes]);
     NSLog(@"Adding in quote again by passing the dictionary. The number of quotes should be more now.");
     NSDictionary *testQuote = @{    @"quote":@"The most boring thing in the entire world is nudity.",
                                     @"author":@"George Burns"
                                     };
     [self.model insertQuote:testQuote atIndex:0];
-    NSLog(@"Number quotes: %d",[self.model numberOfQuotes]);
+    NSLog(@"Number quotes: %ld",[self.model numberOfQuotes]);
     NSString *quoteString = @"";
     quoteString = [quoteString stringByAppendingString:@"The quote at the index 0 that I inserted in is '"];
     NSDictionary *testQuoteDict = [self.model quoteAtIndex:0];
@@ -71,20 +71,45 @@
 }
 - (void) singleTapRecognized: (UITapGestureRecognizer *) recognizer{
     NSDictionary *currentQuoteDict = [self.model randomQuote];
-    NSString *quote = currentQuoteDict[@"quote"];
+    //Testing
+    NSString *quoteString = @"";
+    quoteString = [quoteString stringByAppendingString:@"The random quote is '"];
+    NSDictionary *testQuoteDict = currentQuoteDict;;
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"quote"]];
+    quoteString = [quoteString stringByAppendingString:@"'. The author is "];
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"author"]];
+    quoteString = [quoteString stringByAppendingString:@"."];
+    NSLog(quoteString,nil);    NSString *quote = currentQuoteDict[@"quote"];
     NSString *author = currentQuoteDict[@"author"];
     [self animateQuote:quote animateAuthor:author];
 }
 
 - (void) leftSwipeGestureRecognized: (UITapGestureRecognizer *) recognizer{
     NSDictionary *currentQuoteDict = [self.model prevQuote];
-    NSString *quote = currentQuoteDict[@"quote"];
+    //Testing
+    NSString *quoteString = @"";
+    quoteString = [quoteString stringByAppendingString:@"The prev quote is '"];
+    NSDictionary *testQuoteDict = currentQuoteDict;;
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"quote"]];
+    quoteString = [quoteString stringByAppendingString:@"'. The author is "];
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"author"]];
+    quoteString = [quoteString stringByAppendingString:@"."];
+    NSLog(quoteString,nil);    NSString *quote = currentQuoteDict[@"quote"];
     NSString *author = currentQuoteDict[@"author"];
     [self animateQuote:quote animateAuthor:author];
 }
 
 - (void) rightSwipeGestureRecognized: (UITapGestureRecognizer *) recognizer{
     NSDictionary *currentQuoteDict = [self.model nextQuote];
+    //Testing
+    NSString *quoteString = @"";
+    quoteString = [quoteString stringByAppendingString:@"The next quote is '"];
+    NSDictionary *testQuoteDict = currentQuoteDict;;
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"quote"]];
+    quoteString = [quoteString stringByAppendingString:@"'. The author is "];
+    quoteString = [quoteString stringByAppendingString:testQuoteDict[@"author"]];
+    quoteString = [quoteString stringByAppendingString:@"."];
+    NSLog(quoteString,nil);
     NSString *quote = currentQuoteDict[@"quote"];
     NSString *author = currentQuoteDict[@"author"];
     [self animateQuote:quote animateAuthor:author];
