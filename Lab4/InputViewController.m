@@ -8,7 +8,9 @@
 
 #import "InputViewController.h"
 
-@interface InputViewController ()
+@interface InputViewController () <UITextFieldDelegate>
+@property (weak, nonatomic) IBOutlet UITextField *inputField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
 
 @end
 
@@ -24,6 +26,41 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self.inputField becomeFirstResponder];
+}
+
+- (BOOL) textFieldShouldReturn:(UITextField *)textField{
+    [textField resignFirstResponder];
+    
+    NSLog(@"%@", textField.text);
+    
+    textField.text = nil;
+    return YES;
+}
+
+-(BOOL) textField: (UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+    NSString *changedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    [self validateSaveButtonForText: changedString];
+    return YES;
+}
+
+-(void) validateSaveButtonForText: (NSString *) text{
+    self.saveButton.enabled = ([text length] > 0);
+}
+
+- (IBAction)saveButtonTapped:(id)sender {
+    if(self.completionHandler){
+        self.completionHandler(self.inputField.text);
+    }
+}
+- (IBAction)CancelButtonTapped:(id)sender {
+    if(self.completionHandler){
+        self.completionHandler(nil);
+    }
+}
+
 /*
 #pragma mark - Navigation
 
@@ -33,5 +70,7 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
 
 @end

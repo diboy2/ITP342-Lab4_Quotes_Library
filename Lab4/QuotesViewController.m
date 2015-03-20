@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 Adrian. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "QuotesViewController.h"
 #import "QuotesModel.h"
-@interface ViewController ()
+@interface QuotesViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *authorLabel;
 @property (weak, nonatomic) IBOutlet UILabel *quotesLabel;
 @property(strong,nonatomic) QuotesModel *model;
 @end
 
-@implementation ViewController
+@implementation QuotesViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.model = [[QuotesModel alloc] init];
+    self.model = [QuotesModel sharedModel];
     // Do any additional setup after loading the view, typically from a nib.
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc]
                                          initWithTarget:self

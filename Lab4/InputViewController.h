@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InputViewController : UIViewController
+typedef void(^InputComletionHandler)(NSString *inputText);
 
+@interface InputViewController : UIViewController
+@property(copy, nonatomic) InputComletionHandler completionHandler;
 @end

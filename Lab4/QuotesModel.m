@@ -17,6 +17,17 @@
 @end
 
 @implementation QuotesModel
++(instancetype) sharedModel {
+    static QuotesModel *_sharedModel = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        // thread safe
+        _sharedModel = [[self alloc] init];
+        
+    });
+    
+    return _sharedModel;
+}
 - (instancetype)init
 {
     self = [super init];
@@ -32,9 +43,16 @@
 }
 
 - (NSDictionary *) randomQuote{
-    NSUInteger index = random() % [self numberOfQuotes];
-    self.currentIndex = index;
-    return [self quoteAtIndex:index];
+    if([self numberOfQuotes]){
+        NSUInteger index = random() % [self numberOfQuotes];
+        self.currentIndex = index;
+        return [self quoteAtIndex:index];
+    }
+    else{
+        return @"Quotes model is empty of quotes";
+    }
+    
+    
 }
 
 - (NSUInteger) numberOfQuotes{

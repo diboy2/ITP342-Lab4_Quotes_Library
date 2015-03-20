@@ -10,7 +10,7 @@
 
 @interface QuotesModel : NSObject
 
-- (NSDictionary *) randomQuote;
++ (instancetype) sharedModel;- (NSDictionary *) randomQuote;
 - (NSUInteger) numberOfQuotes;
 - (NSDictionary *) quoteAtIndex: (NSUInteger) index;
 - (void) removeQuoteAtIndex: (NSUInteger) index;

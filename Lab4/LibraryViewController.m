@@ -6,22 +6,24 @@
 //  Copyright (c) 2015 Adrian. All rights reserved.
 //
 
-#import "TableViewController.h"
+#import "LibraryViewController.h"
+#import "QuotesModel.h"
+#import "InputViewController.h"
 
-@interface TableViewController ()
-
+@interface LibraryViewController ()
+@property (strong, nonatomic) QuotesModel *model;
 @end
 
-@implementation TableViewController
+@implementation LibraryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.model = [QuotesModel sharedModel];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,29 +31,29 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
+    return [self.model numberOfQuotes];
     // Return the number of rows in the section.
-    return 0;
+    //return [self.model numberOfQuotes];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
+        static NSString * CellIdentifier = @"QuotesCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSDictionary * quotesDict = [self.model quoteAtIndex:indexPath.row];
+    NSString *quote = quotesDict[@"quote"];
+    cell.textLabel.text = quote;
     
     return cell;
 }
-*/
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -61,17 +63,19 @@
 }
 */
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [self.model removeQuoteAtIndex:indexPath.row];
+        
         // Delete the row from the data source
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.
@@ -96,5 +100,24 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    InputViewController *inputVC = segue.destinationViewController;
+    inputVC.completionHandler = ^(NSString *text){
+        if(text != nil){
+            NSDictionary *quoteDict =@{
+            @"quote":text,
+            @"authoer": @"dummyauthor"
+            };
+            
+            [self.model insertQuote:quoteDict atIndex:0];
+            
+            NSIndexPath  *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    };
+}
 
 @end
