@@ -45,15 +45,33 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-        static NSString * CellIdentifier = @"QuotesCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        static NSString * cellIdentifier = @"QuotesCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc ] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+    }
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont fontWithName:@"Helvetica" size:17.0];
     NSDictionary * quotesDict = [self.model quoteAtIndex:indexPath.row];
+    
     NSString *quote = quotesDict[@"quote"];
+    NSString *author = quotesDict[@"author"];
+    cell.detailTextLabel.text = author;
     cell.textLabel.text = quote;
     
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *strTemp = [self.model quoteAtIndex:indexPath.row][@"quote"];
+    UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
+    
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString: strTemp attributes:@{ NSFontAttributeName:cellFont}];
+    CGRect rect = [attributedText boundingRectWithSize:CGSizeMake(tableView.bounds.size.width,CGFLOAT_MAX)  options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    return rect.size.height + 20;
+    
+}
 
 /*
 // Override to support conditional editing of the table view.
@@ -103,11 +121,11 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     InputViewController *inputVC = segue.destinationViewController;
-    inputVC.completionHandler = ^(NSString *text){
-        if(text != nil){
+    inputVC.completionHandler = ^(NSString *quoteText, NSString *authorText){
+        if(quoteText != nil){
             NSDictionary *quoteDict =@{
-            @"quote":text,
-            @"authoer": @"dummyauthor"
+            @"quote":quoteText,
+            @"authoer": authorText
             };
             
             [self.model insertQuote:quoteDict atIndex:0];

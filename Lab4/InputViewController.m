@@ -9,8 +9,9 @@
 #import "InputViewController.h"
 
 @interface InputViewController () <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *inputField;
+@property (weak, nonatomic) IBOutlet UITextField *quoteField;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveButton;
+@property (weak, nonatomic) IBOutlet UITextField *authorField;
 
 @end
 
@@ -28,15 +29,14 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.inputField becomeFirstResponder];
+    [self.authorField becomeFirstResponder];
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
-    [textField resignFirstResponder];
+    //[textField resignFirstResponder];
     
-    NSLog(@"%@", textField.text);
+    //NSLog(@"%@", textField.text);
     
-    textField.text = nil;
     return YES;
 }
 
@@ -52,12 +52,12 @@
 
 - (IBAction)saveButtonTapped:(id)sender {
     if(self.completionHandler){
-        self.completionHandler(self.inputField.text);
+        self.completionHandler(self.quoteField.text,self.authorField.text);
     }
 }
 - (IBAction)CancelButtonTapped:(id)sender {
     if(self.completionHandler){
-        self.completionHandler(nil);
+        self.completionHandler(nil,nil);
     }
 }
 
