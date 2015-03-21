@@ -49,7 +49,11 @@
         return [self quoteAtIndex:index];
     }
     else{
-        return @"Quotes model is empty of quotes";
+        NSDictionary *emptyQuoteAlert = @{
+                         @"quote": @"Quotes model is empty of quotes",
+                         @"author": @""
+                         };
+        return  emptyQuoteAlert ;
     }
     
     

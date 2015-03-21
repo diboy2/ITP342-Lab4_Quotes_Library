@@ -29,25 +29,33 @@
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.authorField becomeFirstResponder];
+    [self.quoteField becomeFirstResponder];
+    self.saveButton.enabled = NO;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
-    //[textField resignFirstResponder];
-    
-    //NSLog(@"%@", textField.text);
+    [textField resignFirstResponder];
     
     return YES;
 }
 
 -(BOOL) textField: (UITextField *) textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    NSString *changedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-    [self validateSaveButtonForText: changedString];
+    if(textField == self.quoteField){
+        
+        NSString *changedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        [self validateSaveButtonForText1: changedString forText2: self.authorField.text];
+    }else if(textField == self.authorField){
+        NSString *changedString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        [self validateSaveButtonForText1: changedString forText2: self.quoteField.text];
+    }
     return YES;
 }
 
--(void) validateSaveButtonForText: (NSString *) text{
-    self.saveButton.enabled = ([text length] > 0);
+-(void) validateSaveButtonForText1: (NSString *) text1 forText2: (NSString *) text2 {
+    NSCharacterSet *set = [NSCharacterSet whitespaceCharacterSet];
+    
+    self.saveButton.enabled = ([[text1 stringByTrimmingCharactersInSet:set] length] > 0) && ([[text2 stringByTrimmingCharactersInSet:set] length] > 0);
 }
 
 - (IBAction)saveButtonTapped:(id)sender {

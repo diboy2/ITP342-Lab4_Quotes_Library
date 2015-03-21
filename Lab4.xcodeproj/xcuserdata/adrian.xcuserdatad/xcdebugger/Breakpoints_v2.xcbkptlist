@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lab4/QuotesModel.m"
-            timestampString = "446594411.741401"
+            timestampString = "448588353.521166"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-insertQuote:author:atIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,12 +74,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Lab4/LibraryViewController.m"
-            timestampString = "448582675.168289"
+            timestampString = "448589305.571355"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "-prepareForSegue:sender:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Lab4/LibraryViewController.m"
+            timestampString = "448589305.571355"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "-tableView:heightForRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

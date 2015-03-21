@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="TBU-bz-sq8">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="o8B-60-PcG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -14,18 +14,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuotesCell" textLabel="K3n-2D-dud" detailTextLabel="Rx5-2J-TJI" style="IBUITableViewCellStyleSubtitle" id="9bv-UF-cHN">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuotesCell" textLabel="Eck-Hu-CVF" detailTextLabel="ngv-ug-cgX" style="IBUITableViewCellStyleSubtitle" id="9bv-UF-cHN">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9bv-UF-cHN" id="Hwh-07-HCy">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K3n-2D-dud">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Eck-Hu-CVF">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rx5-2J-TJI">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ngv-ug-cgX">
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -78,9 +78,12 @@
                                 <rect key="frame" x="16" y="174" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BGt-XN-AgA" id="n6F-Uc-OvC"/>
+                                </connections>
                             </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sXJ-8G-YXQ">
-                                <rect key="frame" x="16" y="0.0" width="568" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Add Quote" id="Ynd-sp-8FP">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="HeZ-hP-hXd">
@@ -99,15 +102,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="5iY-6w-4QA" firstAttribute="leading" secondItem="xSC-tQ-HWl" secondAttribute="leadingMargin" id="HmR-qR-xH2"/>
-                            <constraint firstItem="rja-Lt-4EG" firstAttribute="top" secondItem="5iY-6w-4QA" secondAttribute="bottom" constant="8" symbolic="YES" id="IcG-Y8-jAQ"/>
-                            <constraint firstItem="5iY-6w-4QA" firstAttribute="leading" secondItem="sXJ-8G-YXQ" secondAttribute="leading" id="QBV-ZT-fbv"/>
-                            <constraint firstItem="rja-Lt-4EG" firstAttribute="trailing" secondItem="5iY-6w-4QA" secondAttribute="trailing" id="Rbu-PA-3u7"/>
-                            <constraint firstItem="rja-Lt-4EG" firstAttribute="leading" secondItem="5iY-6w-4QA" secondAttribute="leading" id="UE5-Vr-2BO"/>
-                            <constraint firstItem="sXJ-8G-YXQ" firstAttribute="top" secondItem="xSC-tQ-HWl" secondAttribute="top" id="UXT-MZ-H62"/>
-                            <constraint firstItem="5iY-6w-4QA" firstAttribute="trailing" secondItem="xSC-tQ-HWl" secondAttribute="trailingMargin" id="ctM-b3-Dnp"/>
-                            <constraint firstItem="5iY-6w-4QA" firstAttribute="top" secondItem="sXJ-8G-YXQ" secondAttribute="bottom" constant="92" id="oBU-Tb-IxO"/>
-                            <constraint firstItem="sXJ-8G-YXQ" firstAttribute="trailing" secondItem="5iY-6w-4QA" secondAttribute="trailing" id="p5s-4m-8ET"/>
+                            <constraint firstItem="sXJ-8G-YXQ" firstAttribute="leading" secondItem="xSC-tQ-HWl" secondAttribute="leading" id="34G-uP-m9h"/>
+                            <constraint firstItem="rja-Lt-4EG" firstAttribute="trailing" secondItem="5iY-6w-4QA" secondAttribute="trailing" id="95M-Kr-GnL"/>
+                            <constraint firstAttribute="trailing" secondItem="sXJ-8G-YXQ" secondAttribute="trailing" id="Hcj-68-SAC"/>
+                            <constraint firstItem="rja-Lt-4EG" firstAttribute="leading" secondItem="xSC-tQ-HWl" secondAttribute="leadingMargin" id="PLb-t4-tFY"/>
+                            <constraint firstItem="5iY-6w-4QA" firstAttribute="top" secondItem="sXJ-8G-YXQ" secondAttribute="bottom" constant="72" id="Rz5-5Z-dkd"/>
+                            <constraint firstItem="sXJ-8G-YXQ" firstAttribute="top" secondItem="xSC-tQ-HWl" secondAttribute="top" constant="20" id="Y5O-Ex-lE5"/>
+                            <constraint firstItem="rja-Lt-4EG" firstAttribute="leading" secondItem="5iY-6w-4QA" secondAttribute="leading" id="ZE9-Gb-9oH"/>
+                            <constraint firstItem="rja-Lt-4EG" firstAttribute="top" secondItem="5iY-6w-4QA" secondAttribute="bottom" constant="8" symbolic="YES" id="tq9-qe-HgF"/>
+                            <constraint firstItem="sXJ-8G-YXQ" firstAttribute="centerX" secondItem="5iY-6w-4QA" secondAttribute="centerX" id="zId-z3-e3i"/>
                         </constraints>
                     </view>
                     <connections>

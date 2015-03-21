@@ -25,7 +25,10 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
      self.navigationItem.leftBarButtonItem = self.editButtonItem;
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [super setEditing:NO animated:NO];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -64,12 +67,15 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *strTemp = [self.model quoteAtIndex:indexPath.row][@"quote"];
+    NSString *quoteStrTemp = [self.model quoteAtIndex:indexPath.row][@"quote"];
+    NSString *authorStrTemp = [self.model quoteAtIndex:indexPath.row][@"author"];
     UIFont *cellFont = [UIFont fontWithName:@"Helvetica" size:17.0];
     
-    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString: strTemp attributes:@{ NSFontAttributeName:cellFont}];
-    CGRect rect = [attributedText boundingRectWithSize:CGSizeMake(tableView.bounds.size.width,CGFLOAT_MAX)  options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-    return rect.size.height + 20;
+    NSAttributedString *quoteAttributedText = [[NSAttributedString alloc] initWithString: quoteStrTemp attributes:@{ NSFontAttributeName:cellFont}];
+    CGRect quoteRect = [quoteAttributedText boundingRectWithSize:CGSizeMake(tableView.bounds.size.width,CGFLOAT_MAX)  options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    NSAttributedString *authorAttributedText = [[NSAttributedString alloc] initWithString: authorStrTemp attributes:@{ NSFontAttributeName:cellFont}];
+    CGRect authorRect = [authorAttributedText boundingRectWithSize:CGSizeMake(tableView.bounds.size.width,CGFLOAT_MAX)  options:NSStringDrawingUsesLineFragmentOrigin context:nil];
+    return quoteRect.size.height + authorRect.size.height + 20;
     
 }
 
@@ -125,7 +131,7 @@
         if(quoteText != nil){
             NSDictionary *quoteDict =@{
             @"quote":quoteText,
-            @"authoer": authorText
+            @"author": authorText
             };
             
             [self.model insertQuote:quoteDict atIndex:0];
@@ -135,7 +141,7 @@
             
         }
         [self dismissViewControllerAnimated:YES completion:nil];
-    };
+   };
 }
 
 @end

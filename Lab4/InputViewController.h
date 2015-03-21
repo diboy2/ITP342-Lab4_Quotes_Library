@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^InputComletionHandler)(NSString *quoteText, NSString *authorText);
+typedef void(^InputCompletionHandler)(NSString *quoteText, NSString *authorText);
 
 @interface InputViewController : UIViewController
-@property(copy, nonatomic) InputComletionHandler completionHandler;
+@property(copy, nonatomic) InputCompletionHandler completionHandler;
 @end

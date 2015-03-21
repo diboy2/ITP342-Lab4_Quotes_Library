@@ -69,6 +69,17 @@
     
     
 }
+
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    NSDictionary *currentQuoteDict = [self.model randomQuote];
+    NSString *quote = currentQuoteDict[@"quote"];
+    NSString *author = currentQuoteDict[@"author"];
+    self.quotesLabel.text = quote;
+    self.authorLabel.text = author;
+    self.quotesLabel.textColor = UIColor.blackColor;
+    self.authorLabel.textColor = UIColor.blackColor;
+}
 - (void) singleTapRecognized: (UITapGestureRecognizer *) recognizer{
     NSDictionary *currentQuoteDict = [self.model randomQuote];
     //Testing
